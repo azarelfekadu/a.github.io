@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postcards – Retro Travel</title>
+<style>
+:root{--paper:#f4ead5;--ink:#2b2118;--red:#d94f30;--teal:#1f7a78;--mustard:#e9a820;--navy:#1d2b4f;--cream:#fbf5e6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Courier New',Courier,monospace;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.55;
+ background-image:radial-gradient(rgba(43,33,24,.07) 1px,transparent 1px);background-size:6px 6px}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1180px,92%);margin:auto}
+.disp{font-family:Impact,'Arial Black',Haettenschweiler,sans-serif;text-transform:uppercase;letter-spacing:.02em;font-weight:400}
+.script{font-family:'Brush Script MT','Segoe Script',cursive}
+/* airmail border */
+.air{height:14px;background:repeating-linear-gradient(135deg,var(--red) 0 22px,var(--cream) 22px 34px,var(--navy) 34px 56px,var(--cream) 56px 68px)}
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:3px solid var(--ink)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+.logo{font-size:1.9rem;color:var(--red);display:flex;gap:8px;align-items:center}
+.logo span{display:inline-block;animation:wob 4s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(14deg)}}
+.menu{display:flex;gap:26px;list-style:none;font-weight:700;text-transform:uppercase;font-size:.85rem;letter-spacing:.08em}
+.menu a{padding:4px 2px;border-bottom:3px solid transparent;transition:.25s}
+.menu a:hover{border-color:var(--red);color:var(--red)}
+.btn{display:inline-block;background:var(--red);color:var(--cream);border:3px solid var(--ink);padding:12px 26px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;box-shadow:5px 5px 0 var(--ink);cursor:pointer;font-family:inherit;font-size:.9rem;transition:.18s}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.alt{background:var(--mustard);color:var(--ink)}
+.btn.tl{background:var(--teal)}
+.bur{display:none;background:none;border:0;font-size:1.8rem;cursor:pointer;color:var(--ink)}
+/* hero */
+.hero{position:relative;padding:70px 0 110px;overflow:hidden;background:var(--mustard);border-bottom:4px solid var(--ink)}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 80% 110%,rgba(255,255,255,.18) 0 6deg,transparent 6deg 12deg);animation:rays 60s linear infinite}
+@keyframes rays{to{transform:rotate(360deg) scale(1.4)}}
+.hg{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(3.2rem,9vw,7.2rem);line-height:.92;color:var(--ink);text-shadow:5px 5px 0 var(--cream)}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero h1 span{display:block;animation:drop .8s cubic-bezier(.3,1.5,.5,1) both}
+.hero h1 span:nth-child(2){animation-delay:.15s}.hero h1 span:nth-child(3){animation-delay:.3s}
+@keyframes drop{from{opacity:0;transform:translateY(-80px) rotate(-4deg)}to{opacity:1;transform:none}}
+.hero p{font-size:1.1rem;max-width:480px;margin:24px 0 30px;font-weight:700}
+.hb{display:flex;gap:16px;flex-wrap:wrap}
+/* postcard */
+.post{position:relative;background:var(--cream);padding:16px 16px 56px;border:3px solid var(--ink);box-shadow:12px 12px 0 var(--ink);transform:rotate(3deg);animation:sway 6s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(-1.5deg) translateY(-12px)}}
+.post .ph{height:340px;background:linear-gradient(135deg,#e07a5f,#f2cc8f);border:3px solid var(--ink);overflow:hidden}
+.post .ph img{width:100%;height:100%;object-fit:cover;filter:sepia(.35) saturate(1.25) contrast(1.05)}
+.post .cap{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:1.9rem;color:var(--red)}
+.stamp{position:absolute;top:-26px;right:-22px;width:112px;height:112px;border-radius:50%;background:var(--red);color:var(--cream);border:4px dashed var(--cream);outline:4px solid var(--red);display:grid;place-items:center;text-align:center;font-weight:700;font-size:.78rem;line-height:1.2;transform:rotate(14deg);animation:spinstamp 12s linear infinite}
+@keyframes spinstamp{50%{transform:rotate(-8deg) scale(1.08)}}
+.stamp b{font-size:1.5rem;display:block}
+.sun{position:absolute;left:-60px;top:-40px;width:150px;height:150px;border-radius:50%;background:var(--red);border:4px solid var(--ink);opacity:.9;animation:rise 7s ease-in-out infinite alternate}
+@keyframes rise{to{transform:translateY(24px)}}
+.plane{position:absolute;top:70px;left:-120px;font-size:3rem;animation:fly 16s linear infinite;z-index:2}
+@keyframes fly{to{transform:translateX(calc(100vw + 240px))}}
+.zig{position:absolute;bottom:-1px;left:0;width:100%;height:30px;background:linear-gradient(135deg,var(--paper) 25%,transparent 25%) -15px 0,linear-gradient(225deg,var(--paper) 25%,transparent 25%) -15px 0;background-size:30px 30px;background-color:transparent}
+/* ticker */
+.tick{background:var(--navy);color:var(--cream);border-bottom:4px solid var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0}
+.tick div{display:inline-block;animation:tk 28s linear infinite;font-size:1.3rem}
+.tick b{color:var(--mustard);margin:0 22px}
+@keyframes tk{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:90px 0}
+.title{text-align:center;margin-bottom:54px}
+.title small{display:inline-block;background:var(--ink);color:var(--cream);padding:5px 16px;letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;transform:rotate(-2deg)}
+.title h2{font-size:clamp(2.4rem,6vw,4.4rem);margin-top:14px;line-height:1}
+.title h2 em{font-style:normal;color:var(--red)}
+.rv{opacity:0;transform:translateY(60px) rotate(var(--r,0deg));transition:.8s cubic-bezier(.3,1.3,.5,1)}
+.rv.in{opacity:1;transform:rotate(var(--r,0deg))}
+/* destination postcards */
+.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 34px}
+.dc{background:var(--cream);padding:14px 14px 20px;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);position:relative;transition:transform .35s cubic-bezier(.3,1.5,.5,1),box-shadow .3s;cursor:pointer}
+.dc:nth-child(1){--r:-2deg}.dc:nth-child(2){--r:1.5deg}.dc:nth-child(3){--r:-1deg}.dc:nth-child(4){--r:2deg}.dc:nth-child(5){--r:-1.5deg}.dc:nth-child(6){--r:1deg}
+.dc:hover{transform:rotate(0deg) scale(1.05) translateY(-8px)!important;box-shadow:14px 14px 0 var(--ink);z-index:5}
+.dc .im{height:230px;border:3px solid var(--ink);overflow:hidden;background:var(--g)}
+.dc img{width:100%;height:100%;object-fit:cover;filter:sepia(.3) saturate(1.2);transition:.8s}
+.dc:hover img{transform:scale(1.15) rotate(1deg)}
+.dc h3{font-size:1.7rem;margin:14px 0 4px}
+.dc .row{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;font-weight:700}
+.dc .tag{position:absolute;top:-14px;left:20px;background:var(--teal);color:var(--cream);padding:4px 14px;border:3px solid var(--ink);font-size:.78rem;font-weight:700;text-transform:uppercase;transform:rotate(-4deg)}
+.dc .pr{background:var(--red);color:var(--cream);padding:4px 12px;border:2px solid var(--ink)}
+/* how it works */
+.how{background:var(--teal);color:var(--cream);border-block:4px solid var(--ink)}
+.how .title h2{color:var(--cream)}.how .title h2 em{color:var(--mustard)}
+.how .title small{background:var(--cream);color:var(--ink)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;counter-reset:s}
+.step{background:var(--cream);color:var(--ink);padding:30px 22px;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);position:relative;text-align:center;transition:.3s}
+.step:hover{transform:translateY(-10px) rotate(-2deg)}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(--red);color:var(--cream);border:3px solid var(--ink);display:grid;place-items:center;font-family:Impact,sans-serif;font-size:1.3rem}
+.step .ic{font-size:2.6rem;display:block;margin:10px 0;animation:bob 3s ease-in-out infinite}
+.step:nth-child(2) .ic{animation-delay:-.7s}.step:nth-child(3) .ic{animation-delay:-1.4s}.step:nth-child(4) .ic{animation-delay:-2.1s}
+@keyframes bob{50%{transform:translateY(-8px) rotate(8deg)}}
+.step h4{font-size:1.1rem;text-transform:uppercase;margin-bottom:6px}
+.step p{font-size:.88rem}
+/* tickets */
+.tk{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.ticket{background:var(--cream);border:3px solid var(--ink);position:relative;display:flex;flex-direction:column;box-shadow:8px 8px 0 var(--ink);transition:.3s}
+.ticket:hover{transform:translateY(-10px)}
+.ticket .top{padding:26px 24px 18px;border-bottom:3px dashed var(--ink)}
+.ticket .top small{color:var(--red);font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.ticket .top h3{font-size:2rem;margin-top:4px}
+.ticket .top .big{font-family:Impact,sans-serif;font-size:3rem;color:var(--teal);margin-top:8px}
+.ticket .bot{padding:20px 24px 26px;display:grid;gap:8px;flex:1}
+.ticket .bot li{list-style:none;font-size:.92rem}
+.ticket .bot li::before{content:"✈ ";color:var(--red)}
+.ticket::before,.ticket::after{content:"";position:absolute;top:calc(100% - 100% + 128px);width:28px;height:28px;border-radius:50%;background:var(--paper);border:3px solid var(--ink)}
+.ticket::before{left:-17px}.ticket::after{right:-17px}
+.ticket.hot{background:var(--mustard)}
+.ticket.hot .top{border-color:var(--ink)}
+.ticket .btn{margin:0 24px 26px;text-align:center}
+/* reviews */
+.rvw{max-width:760px;margin:auto;position:relative;min-height:250px}
+.note{position:absolute;inset:0;background:#fff8c7;border:3px solid var(--ink);padding:34px;box-shadow:8px 8px 0 var(--ink);opacity:0;transform:rotate(4deg) translateY(40px);transition:.7s cubic-bezier(.3,1.4,.5,1);pointer-events:none}
+.note.on{opacity:1;transform:rotate(-1.5deg);pointer-events:auto}
+.note p{font-size:1.25rem;font-weight:700}
+.note span{display:block;margin-top:16px;color:var(--red);font-size:1.5rem}
+.note::before{content:"";position:absolute;top:-16px;left:50%;width:90px;height:28px;background:rgba(217,79,48,.7);transform:translateX(-50%) rotate(-3deg)}
+/* contact */
+.ct{background:var(--navy);color:var(--cream);border:4px solid var(--ink);box-shadow:12px 12px 0 var(--red);display:grid;grid-template-columns:1fr 1.1fr}
+.ct .l{padding:54px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 14px,transparent 14px 28px)}
+.ct .l h2{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1;margin-bottom:16px}
+.ct .l h2 em{font-style:normal;color:var(--mustard)}
+.ct form{padding:40px;background:var(--cream);color:var(--ink);display:grid;gap:14px;border-left:4px solid var(--ink)}
+.ct input,.ct select,.ct textarea{width:100%;padding:13px;border:3px solid var(--ink);background:#fff;font-family:inherit;font-size:1rem;color:var(--ink);transition:.2s}
+.ct input:focus,.ct select:focus,.ct textarea:focus{outline:0;background:#fff3c4;box-shadow:4px 4px 0 var(--red)}
+footer{background:var(--ink);color:var(--cream);text-align:center;padding:40px 0;margin-top:90px}
+footer .logo{justify-content:center;color:var(--mustard);margin-bottom:8px}
+#toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120px);background:var(--mustard);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:14px 26px;font-weight:700;z-index:99;transition:.5s cubic-bezier(.3,1.5,.5,1)}
+#toast.on{transform:translate(-50%,0)}
+@media(max-width:960px){.hg{grid-template-columns:1fr}.dg{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr;gap:40px 22px}.tk{grid-template-columns:1fr}.ct{grid-template-columns:1fr}.ct form{border-left:0;border-top:4px solid var(--ink)}
+ .menu{position:fixed;top:0;right:-100%;width:70%;height:100vh;background:var(--cream);border-left:4px solid var(--ink);flex-direction:column;padding:100px 30px;transition:.35s;z-index:55}.menu.o{right:0}.bur{display:block;z-index:60}.nb{display:none}.ticket::before,.ticket::after{display:none}.ct .l,.ct form{padding:30px}}
+@media(max-width:560px){.dg{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.post .ph{height:250px}section{padding:70px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="air"></div>
+<nav><div class="wrap">
+ <a href="#home" class="logo disp"><span>✈</span> Postcards</a>
+ <ul class="menu" id="menu">
+  <li><a href="#places">Places</a></li><li><a href="#how">How it works</a></li>
+  <li><a href="#tickets">Tickets</a></li><li><a href="#notes">Notes</a></li><li><a href="#contact">Contact</a></li>
+ </ul>
+ <a href="#contact" class="btn nb">Book now</a>
+ <button class="bur" id="bur" aria-label="Menu">☰</button>
+</div></nav>
+
+<header class="hero" id="home">
+ <div class="plane">🛩️</div>
+ <div class="wrap hg">
+  <div>
+   <h1 class="disp"><span>Wish you</span><span><em>were</em> here!</span><span>Go see it.</span></h1>
+   <p>Old-school adventures for modern wanderers. Pack light, send postcards, collect stories.</p>
+   <div class="hb"><a href="#places" class="btn">Find your place</a><a href="#tickets" class="btn alt">See tickets</a></div>
+  </div>
+  <div style="position:relative">
+   <div class="sun"></div>
+   <div class="post">
+    <div class="stamp"><div>AIR<b>MAIL</b>★ 2026 ★</div></div>
+    <div class="ph"><img alt="Santorini" src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=900&q=70" onerror="this.remove()"></div>
+    <div class="cap script">Greetings from Santorini!</div>
+   </div>
+  </div>
+ </div>
+ <div class="zig"></div>
+</header>
+
+<div class="tick"><div id="tk">★ SANTORINI <b>✈</b> BALI <b>✈</b> KYOTO <b>✈</b> MALDIVES <b>✈</b> LALIBELA <b>✈</b> SWISS ALPS <b>✈</b> ICELAND <b>✈</b> </div></div>
+
+<section id="places"><div class="wrap">
+ <div class="title rv"><small>Destinations</small><h2 class="disp">Pick your <em>postcard</em></h2></div>
+ <div class="dg">
+  <div class="dc rv"><span class="tag">Beach</span><div class="im" style="--g:#e07a5f"><img loading="lazy" alt="Bali" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"></div><h3 class="disp">Bali</h3><div class="row"><span>9 days</span><span class="pr">$990</span></div></div>
+  <div class="dc rv"><span class="tag">Culture</span><div class="im" style="--g:#f2cc8f"><img loading="lazy" alt="Kyoto" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"></div><h3 class="disp">Kyoto</h3><div class="row"><span>8 days</span><span class="pr">$1,780</span></div></div>
+  <div class="dc rv"><span class="tag">Luxury</span><div class="im" style="--g:#81b29a"><img loading="lazy" alt="Maldives" src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"></div><h3 class="disp">Maldives</h3><div class="row"><span>5 days</span><span class="pr">$2,490</span></div></div>
+  <div class="dc rv"><span class="tag">Mountains</span><div class="im" style="--g:#3d5a80"><img loading="lazy" alt="Swiss Alps" src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"></div><h3 class="disp">Swiss Alps</h3><div class="row"><span>6 days</span><span class="pr">$2,150</span></div></div>
+  <div class="dc rv"><span class="tag">Heritage</span><div class="im" style="--g:#e9a820"><img loading="lazy" alt="Lalibela" src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"></div><h3 class="disp">Lalibela</h3><div class="row"><span>4 days</span><span class="pr">$690</span></div></div>
+  <div class="dc rv"><span class="tag">Wild</span><div class="im" style="--g:#6d597a"><img loading="lazy" alt="Iceland" src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=700&q=70" onerror="this.remove()"></div><h3 class="disp">Iceland</h3><div class="row"><span>7 days</span><span class="pr">$1,950</span></div></div>
+ </div>
+</div></section>
+
+<section class="how" id="how"><div class="wrap">
+ <div class="title rv"><small>Easy as 1-2-3-4</small><h2 class="disp">How it <em>works</em></h2></div>
+ <div class="steps">
+  <div class="step rv"><span class="ic">🗺️</span><h4>Choose</h4><p>Pick a place that makes you smile.</p></div>
+  <div class="step rv"><span class="ic">✏️</span><h4>Tailor</h4><p>We shape the trip to your pace.</p></div>
+  <div class="step rv"><span class="ic">🎫</span><h4>Book</h4><p>One simple price, no surprises.</p></div>
+  <div class="step rv"><span class="ic">📮</span><h4>Go!</h4><p>Travel, explore, send us a postcard.</p></div>
+ </div>
+</div></section>
+
+<section id="tickets"><div class="wrap">
+ <div class="title rv"><small>Boarding passes</small><h2 class="disp">Choose your <em>ticket</em></h2></div>
+ <div class="tk">
+  <div class="ticket rv"><div class="top"><small>Economy explorer</small><h3 class="disp">Weekend Dash</h3><div class="big">$590</div></div><ul class="bot"><li>3 nights cozy stay</li><li>City tour included</li><li>Flexible dates</li></ul><a href="#contact" class="btn tl">Book</a></div>
+  <div class="ticket hot rv"><div class="top"><small>★ Most popular</small><h3 class="disp">Grand Tour</h3><div class="big" style="color:var(--red)">$1,890</div></div><ul class="bot"><li>8 nights great hotels</li><li>Local guide every day</li><li>Food tour + rail pass</li></ul><a href="#contact" class="btn">Book</a></div>
+  <div class="ticket rv"><div class="top"><small>First class</small><h3 class="disp">Dream Escape</h3><div class="big">$3,400</div></div><ul class="bot"><li>10 nights luxury stay</li><li>Private transfers</li><li>Concierge 24/7</li></ul><a href="#contact" class="btn tl">Book</a></div>
+ </div>
+</div></section>
+
+<section id="notes" style="padding-top:0"><div class="wrap">
+ <div class="title rv"><small>Sticky notes</small><h2 class="disp">From our <em>travelers</em></h2></div>
+ <div class="rvw rv" id="rvw">
+  <div class="note on"><p>“Best trip of my life! Everything was planned, and we still had room to wander.”</p><span class="script">— Selam, Kyoto</span></div>
+  <div class="note"><p>“Our guide knew every secret corner. We came home with a hundred stories.”</p><span class="script">— Daniel &amp; Meron, Bali</span></div>
+  <div class="note"><p>“Easy booking, friendly people, zero stress. Already planning the next one!”</p><span class="script">— Lukas, Iceland</span></div>
+ </div>
+</div></section>
+
+<section id="contact" style="padding-top:0"><div class="wrap">
+ <div class="ct rv">
+  <div class="l"><h2 class="disp">Ready to <em>send</em> your own postcard?</h2><p>Tell us where you dream of going. We reply within 24 hours with a free plan.</p><p style="margin-top:20px;font-size:3rem">📮</p></div>
+  <form id="form">
+   <input required placeholder="Your name"><input required type="email" placeholder="Email">
+   <select><option>Bali</option><option>Kyoto</option><option>Maldives</option><option>Swiss Alps</option><option>Lalibela</option><option>Iceland</option></select>
+   <input type="date"><textarea rows="3" placeholder="Tell us about your dream trip…"></textarea>
+   <button class="btn" type="submit">Send it ✈</button>
+  </form>
+ </div>
+</div></section>
+
+<footer><div class="logo disp">✈ Postcards</div><p>© <span id="yr"></span> Postcards Travel Co. Made for wanderers.</p></footer>
+<div class="air"></div>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+$('#bur').onclick=()=>$('#menu').classList.toggle('o');
+$$('#menu a').forEach(a=>a.onclick=()=>$('#menu').classList.remove('o'));
+$('#yr').textContent=new Date().getFullYear();
+$('#tk').innerHTML+=$('#tk').innerHTML;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3)*.12+'s';io.observe(el)});
+// notes
+const ns=$$('.note');let ni=0;setInterval(()=>{ns[ni].classList.remove('on');ni=(ni+1)%ns.length;ns[ni].classList.add('on')},5000);
+// form
+$('#form').onsubmit=e=>{e.preventDefault();e.target.reset();const t=$('#toast');t.textContent='📮 Postcard sent! We will reply within 24 hours.';t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3400)};
+</script>
+</body>
+</html>
