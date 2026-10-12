@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>True & Travel · Modern Minimal</title>
+  <!-- Modern geometric sans + mono accent -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      line-height: 1.6;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --accent: #d4ff3f;
+      --accent-dark: #a8cc1f;
+      --text: #f0f0f0;
+      --text-dim: #8a8a8a;
+      --text-dimmer: #555;
+      --border: #262626;
+      --border-light: #333;
+      --radius: 4px;
+      --radius-lg: 12px;
+      --radius-xl: 24px;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    section {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    h2 {
+      font-size: 3.5rem;
+      margin-bottom: 24px;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-desc {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin-bottom: 60px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 16px 32px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      border-radius: var(--radius);
+      text-transform: uppercase;
+    }
+
+    .btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-light);
+    }
+
+    .btn-ghost:hover {
+      background: var(--surface-2);
+      border-color: var(--text-dim);
+    }
+
+    /* ---------- SIDEBAR NAV ---------- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 0;
+      z-index: 1000;
+      transition: width 0.35s ease;
+      overflow: hidden;
+    }
+
+    .sidebar:hover {
+      width: 240px;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      padding-left: 28px;
+    }
+
+    .sidebar-logo i {
+      color: var(--accent);
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo .logo-text {
+      opacity: 0;
+      transition: opacity 0.3s ease 0.1s;
+    }
+
+    .sidebar:hover .sidebar-logo .logo-text {
+      opacity: 1;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      padding: 0 16px;
+      list-style: none;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+
+    .sidebar-nav a i {
+      font-size: 1.1rem;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .sidebar-nav a span {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .sidebar:hover .sidebar-nav a span {
+      opacity: 1;
+    }
+
+    .sidebar-nav a:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .sidebar-nav a.active {
+      color: var(--accent);
+    }
+
+    .sidebar-bottom {
+      width: 100%;
+      padding: 0 16px;
+    }
+
+    .sidebar-bottom a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: all 0.25s;
+      white-space: nowrap;
+      list-style: none;
+    }
+
+    .sidebar-bottom a i {
+      font-size: 1.1rem;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .sidebar-bottom a span {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .sidebar:hover .sidebar-bottom a span {
+      opacity: 1;
+    }
+
+    .sidebar-bottom a:hover {
+      background: var(--surface-2);
+      color: var(--accent);
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+    .main {
+      margin-left: 80px;
+      min-height: 100vh;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 140px 0 80px;
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(212, 255, 63, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 255, 63, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 255, 63, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: 5.5rem;
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 32px;
+    }
+
+    .hero-title .accent {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-title .outline {
+      -webkit-text-stroke: 1.5px var(--text);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      max-width: 480px;
+      margin-bottom: 48px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero Visual - Card Stack */
+    .hero-visual {
+      position: relative;
+      height: 520px;
+    }
+
+    .stack-card {
+      position: absolute;
+      width: 100%;
+      max-width: 380px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+      transition: transform 0.5s ease, z-index 0s;
+      cursor: pointer;
+    }
+
+    .stack-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.3);
+      transition: filter 0.5s;
+    }
+
+    .stack-card:hover img {
+      filter: grayscale(0);
+    }
+
+    .stack-card-body {
+      padding: 20px 22px 24px;
+    }
+
+    .stack-card-body .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .stack-card-body h4 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .stack-card-body p {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      font-weight: 300;
+    }
+
+    .stack-card:nth-child(1) {
+      top: 0;
+      right: 0;
+      transform: rotate(4deg);
+      z-index: 3;
+    }
+
+    .stack-card:nth-child(2) {
+      top: 60px;
+      left: 0;
+      transform: rotate(-3deg);
+      z-index: 2;
+    }
+
+    .stack-card:nth-child(3) {
+      top: 240px;
+      right: 40px;
+      transform: rotate(2deg);
+      z-index: 1;
+    }
+
+    .stack-card:hover {
+      transform: rotate(0deg) scale(1.02);
+      z-index: 10;
+    }
+
+    /* ---------- DESTINATIONS ---------- */
+    .destinations {
+      background: var(--bg);
+    }
+
+    .dest-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .dest-item {
+      background: var(--surface);
+      padding: 40px 36px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dest-item:hover {
+      background: var(--surface-2);
+    }
+
+    .dest-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .dest-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .dest-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dimmer);
+      margin-bottom: 60px;
+    }
+
+    .dest-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .dest-item p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .dest-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .dest-meta .price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .dest-meta .arrow {
+      color: var(--text-dim);
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .dest-item:hover .dest-meta .arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* ---------- FEATURES ---------- */
+    .features {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .feature-block {
+      padding-top: 30px;
+      border-top: 1px solid var(--border-light);
+      transition: border-color 0.3s;
+    }
+
+    .feature-block:hover {
+      border-color: var(--accent);
+    }
+
+    .feature-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .feature-block h3 {
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .feature-block p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ---------- VISION / FUTURE ---------- */
+    .vision {
+      background: var(--bg);
+    }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .vision-visual {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .vision-visual img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.5) contrast(1.1);
+      transition: filter 0.6s;
+    }
+
+    .vision-visual:hover img {
+      filter: grayscale(0) contrast(1);
+    }
+
+    .vision-visual::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .vision-badge {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      z-index: 2;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 8px 16px;
+      border-radius: 40px;
+      border: 1px solid var(--border-light);
+    }
+
+    .vision-text h2 {
+      font-size: 3rem;
+      margin-bottom: 28px;
+    }
+
+    .vision-text p {
+      color: var(--text-dim);
+      font-weight: 300;
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .vision-timeline {
+      margin: 40px 0 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .timeline-item:hover {
+      border-color: var(--accent);
+    }
+
+    .timeline-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      min-width: 60px;
+      padding-top: 4px;
+    }
+
+    .timeline-content h4 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .timeline-content p {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    /* ---------- MARQUEE ---------- */
+    .marquee {
+      padding: 40px 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 60px;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    .marquee-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      color: var(--text-dimmer);
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      font-weight: 300;
+    }
+
+    .marquee-item i {
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      background: var(--bg);
+      padding: 140px 0;
+    }
+
+    .cta-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 80px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(212, 255, 63, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .cta-text h2 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-text p {
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .footer-brand .logo i {
+      color: var(--accent);
+    }
+
+    .footer-brand p {
+      color: var(--text-dim);
+      font-weight: 300;
+      font-size: 0.9rem;
+      max-width: 280px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .footer-socials a:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+
+    .footer-newsletter p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .footer-newsletter-form {
+      display: flex;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .footer-newsletter-form input {
+      flex: 1;
+      padding: 14px 18px;
+      border: none;
+      outline: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .footer-newsletter-form input::placeholder {
+      color: var(--text-dimmer);
+    }
+
+    .footer-newsletter-form button {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 0 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s;
+      white-space: nowrap;
+    }
+
+    .footer-newsletter-form button:hover {
+      background: var(--accent-dark);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dimmer);
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------- REVEAL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1100px) {
+      .hero-title {
+        font-size: 4rem;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+        padding: 0 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sidebar:hover {
+        width: 100%;
+      }
+
+      .sidebar-logo {
+        padding-left: 0;
+      }
+
+      .sidebar-logo .logo-text {
+        opacity: 1;
+      }
+
+      .sidebar-nav {
+        flex-direction: row;
+        gap: 4px;
+        padding: 0;
+        width: auto;
+      }
+
+      .sidebar-nav a {
+        padding: 10px 14px;
+      }
+
+      .sidebar-nav a span {
+        display: none;
+      }
+
+      .sidebar-bottom {
+        display: none;
+      }
+
+      .main {
+        margin-left: 0;
+        padding-top: 70px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .hero-visual {
+        height: 400px;
+      }
+
+      .dest-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vision-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .vision-visual img {
+        height: 350px;
+      }
+
+      .cta-inner {
+        padding: 50px 36px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .hero-title {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero {
+        padding-top: 100px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-newsletter-form {
+        flex-direction: column;
+        border: none;
+        gap: 10px;
+      }
+
+      .footer-newsletter-form input {
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius);
+      }
+
+      .footer-newsletter-form button {
+        padding: 14px;
+        border-radius: var(--radius);
+      }
+
+      .marquee-item {
+        font-size: 1.1rem;
+        gap: 40px;
+      }
+
+      .cta-text h2 {
+        font-size: 2rem;
+      }
+
+      .cta-inner {
+        padding: 40px 24px;
+      }
+
+      .vision-text h2 {
+        font-size: 2.2rem;
+      }
+
+      .vision-visual img {
+        height: 250px;
+      }
+
+      .timeline-item {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .stack-card:nth-child(3) {
+        display: none;
+      }
+
+      .hero-visual {
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .sidebar-nav a {
+        padding: 8px 10px;
+      }
+
+      .sidebar-nav a i {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== SIDEBAR NAVIGATION ========== -->
+  <aside class="sidebar">
+    <a href="#" class="sidebar-logo">
+      <i class="fas fa-compass"></i>
+      <span class="logo-text">true.travel</span>
+    </a>
+
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#home" class="active">
+          <i class="fas fa-house"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#destinations">
+          <i class="fas fa-location-dot"></i>
+          <span>Destinations</span>
+        </a>
+      </li>
+      <li>
+        <a href="#philosophy">
+          <i class="fas fa-compass"></i>
+          <span>Philosophy</span>
+        </a>
+      </li>
+      <li>
+        <a href="#future">
+          <i class="fas fa-rocket"></i>
+          <span>Future</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-bottom">
+      <a href="#journal">
+        <i class="fas fa-book-open"></i>
+        <span>Journal</span>
+      </a>
+      <a href="#">
+        <i class="fas fa-user"></i>
+        <span>Sign in</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="main">
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <div class="label">Est. 2019 · Modern Travel</div>
+            <h1 class="hero-title">
+              Travel<br>
+              <span class="accent">different</span>.<br>
+              <span class="outline">Live more.</span>
+            </h1>
+            <p class="hero-desc">
+              We craft intelligent, sustainable journeys for the modern explorer. 
+              No tourist traps. No generic itineraries. Just authentic experiences 
+              designed around you.
+            </p>
+            <div class="hero-actions">
+              <a href="#destinations" class="btn">
+                Explore trips <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="#future" class="btn btn-ghost">
+                Our vision
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="stack-card">
+              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1470&auto=format&fit=crop" alt="Santorini">
+              <div class="stack-card-body">
+                <div class="tag">Popular</div>
+                <h4>Santorini, Greece</h4>
+                <p>7 nights · from $1,290</p>
+              </div>
+            </div>
+            <div class="stack-card">
+              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1470&auto=format&fit=crop" alt="Bali">
+              <div class="stack-card-body">
+                <div class="tag">Trending</div>
+                <h4>Bali, Indonesia</h4>
+                <p>10 nights · from $890</p>
+              </div>
+            </div>
+            <div class="stack-card">
+              <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1470&auto=format&fit=crop" alt="Swiss Alps">
+              <div class="stack-card-body">
+                <div class="tag">New</div>
+                <h4>Swiss Alps</h4>
+                <p>5 nights · from $1,750</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MARQUEE ========== -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">
+          <i class="fas fa-circle"></i> SUSTAINABLE TRAVEL
+          <i class="fas fa-circle"></i> LOCAL EXPERIENCES
+          <i class="fas fa-circle"></i> SMART ITINERARIES
+          <i class="fas fa-circle"></i> CARBON NEUTRAL
+          <i class="fas fa-circle"></i> DESIGNED FOR YOU
+        </span>
+        <span class="marquee-item">
+          <i class="fas fa-circle"></i> SUSTAINABLE TRAVEL
+          <i class="fas fa-circle"></i> LOCAL EXPERIENCES
+          <i class="fas fa-circle"></i> SMART ITINERARIES
+          <i class="fas fa-circle"></i> CARBON NEUTRAL
+          <i class="fas fa-circle"></i> DESIGNED FOR YOU
+        </span>
+      </div>
+    </div>
+
+    <!-- ========== DESTINATIONS ========== -->
+    <section class="destinations" id="destinations">
+      <div class="container">
+        <div class="dest-header reveal">
+          <div>
+            <div class="label">01 — Destinations</div>
+            <h2>Where to next?</h2>
+          </div>
+          <a href="#" class="btn btn-ghost">View all <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="dest-grid reveal">
+          <div class="dest-item">
+            <div class="dest-number">/ 001</div>
+            <h3>Santorini</h3>
+            <p>Whitewashed villages, cobalt domes, and the world's most storied sunsets.</p>
+            <div class="dest-meta">
+              <span class="price">$1,290</span>
+              <i class="fas fa-arrow-right arrow"></i>
+            </div>
+          </div>
+          <div class="dest-item">
+            <div class="dest-number">/ 002</div>
+            <h3>Bali</h3>
+            <p>Emerald rice terraces, ancient temples, and cliffside sunsets.</p>
+            <div class="dest-meta">
+              <span class="price">$890</span>
+              <i class="fas fa-arrow-right arrow"></i>
+            </div>
+          </div>
+          <div class="dest-item">
+            <div class="dest-number">/ 003</div>
+            <h3>Swiss Alps</h3>
+            <p>Snow-capped peaks, glacier trains, and timeless alpine hospitality.</p>
+            <div class="dest-meta">
+              <span class="price">$1,750</span>
+              <i class="fas fa-arrow-right arrow"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section class="features" id="philosophy">
+      <div class="container">
+        <div class="reveal">
+          <div class="label">02 — Philosophy</div>
+          <h2>Built different.</h2>
+          <p class="section-desc">
+            Traditional travel agencies sell packages. We engineer experiences — 
+            blending data, local knowledge, and a deep respect for the planet.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-block reveal">
+            <span class="feature-num">/ 01</span>
+            <h3>Sustainable first</h3>
+            <p>Every trip is carbon-offset and designed to support local communities, not exploit them.</p>
+          </div>
+          <div class="feature-block reveal">
+            <span class="feature-num">/ 02</span>
+            <h3>Smart itineraries</h3>
+            <p>Our AI learns your preferences and crafts a journey that adapts to your pace and interests.</p>
+          </div>
+          <div class="feature-block reveal">
+            <span class="feature-num">/ 03</span>
+            <h3>Real local experts</h3>
+            <p>Guides who grew up in the places you're visiting — not scripted tour operators.</p>
+          </div>
+          <div class="feature-block reveal">
+            <span class="feature-num">/ 04</span>
+            <h3>Zero hidden fees</h3>
+            <p>Transparent pricing, flexible cancellation, and 24/7 human support. Always.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FUTURE VISION ========== -->
+    <section class="vision" id="future">
+      <div class="container">
+        <div class="vision-grid">
+          <div class="vision-visual reveal">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Future travel technology">
+            <div class="vision-badge">Coming 2026</div>
+          </div>
+
+          <div class="vision-text reveal">
+            <div class="label">03 — Future</div>
+            <h2>The next era of travel.</h2>
+            <p>
+              We're building a travel platform that feels like it's from the future — 
+              but respects the timeless soul of exploration.
+            </p>
+
+            <div class="vision-timeline">
+              <div class="timeline-item">
+                <span class="timeline-year">2025</span>
+                <div class="timeline-content">
+                  <h4>AI Travel Concierge</h4>
+                  <p>Personalized recommendations powered by real traveler data.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">2025</span>
+                <div class="timeline-content">
+                  <h4>Virtual Reality Previews</h4>
+                  <p>Walk through your hotel and destination before you book.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">2026</span>
+                <div class="timeline-content">
+                  <h4>Zero-Carbon Flights</h4>
+                  <p>Partnerships with sustainable aviation startups worldwide.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">2026</span>
+                <div class="timeline-content">
+                  <h4>Smart Eco-Resorts</h4>
+                  <p>Fully self-sustaining luxury stays with zero environmental footprint.</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="#" class="btn">
+              Read the roadmap <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="cta" id="journal">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <div class="cta-text">
+            <h2>Ready to travel differently?</h2>
+            <p>Join the newsletter for early access to new destinations, travel insights, and exclusive offers.</p>
+          </div>
+          <a href="#" class="btn">Get started <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="logo">
+              <i class="fas fa-compass"></i> true.travel
+            </a>
+            <p>Modern travel for the conscious explorer. Built with intention, designed for you.</p>
+            <div class="footer-socials">
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#destinations">Destinations</a></li>
+              <li><a href="#philosophy">Philosophy</a></li>
+              <li><a href="#future">Future</a></li>
+              <li><a href="#journal">Journal</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Sustainability</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-newsletter">
+            <h4 style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 24px;">Newsletter</h4>
+            <p>Monthly. No spam. Unsubscribe anytime.</p>
+            <div class="footer-newsletter-form">
+              <input type="email" id="newsletterEmail" placeholder="you@email.com">
+              <button id="subscribeBtn">Join</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2025 true.travel — all rights reserved</span>
+          <span>Privacy · Terms · Cookies</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    (function() {
+      // ---------- SIDEBAR ACTIVE LINK ----------
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+      function updateActiveLink() {
+        const scrollPos = window.scrollY + 200;
+        sections.forEach(section => {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          const id = section.getAttribute('id');
+          if (scrollPos >= top && scrollPos < top + height) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveLink);
+      updateActiveLink();
+
+      // ---------- SCROLL REVEAL ----------
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // ---------- NEWSLETTER ----------
+      const subscribeBtn = document.getElementById('subscribeBtn');
+      const newsletterEmail = document.getElementById('newsletterEmail');
+
+      subscribeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = newsletterEmail.value.trim();
+        if (!email) {
+          alert('Please enter your email address.');
+          return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        alert(`Welcome aboard, ${email}! ✨ (demo only)`);
+        newsletterEmail.value = '';
+      });
+
+      newsletterEmail.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          subscribeBtn.click();
+        }
+      });
+
+      // ---------- SMOOTH SCROLL ----------
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            const offset = 80;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // ---------- HERO CARD STACK INTERACTION ----------
+      const stackCards = document.querySelectorAll('.stack-card');
+      stackCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          stackCards.forEach(c => c.style.zIndex = '1');
+          card.style.zIndex = '10';
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
